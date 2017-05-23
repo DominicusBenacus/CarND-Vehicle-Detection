@@ -112,7 +112,7 @@ multiWindowScaleYsYsS = [(390, 470, 1), (400, 600, 1.5), (500, 700, 2.5)]
         ...
         ...
         and go on with the common find_car()
-````
+```
 
 So after the first approach without multi-scale windows I did a lot of experimentation to figure out which version of scaling creates the best output. But one need to consider the computational time and this means not implement to much different scales of windows and not too much overlapping. So it is best approach to increase the number of scaled windows and also the overlap till the results are sufficient. 
 
@@ -142,19 +142,32 @@ And one image with the final result
 ![image9]
 
 
-###Discussion
+## Discussion
 
-####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
+### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
 Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
 
-1. There are many improvement point to handle in future:
+### My approach:
+
+Most of the code I used is out of the lessons. my approach was to get things running. But step after step. So I spend a lot of time to get a good working feature extraction and also a very well trained classifier. Therefore I also tried the GridSearchCV algo. But without success--> too much calc time without result. i will try this later again.
+
+Second big step was to adapt the find_car() function out of the lesson to be able to perform mutliscale.
+
+So and during the whole project I look for tips in the forum andtried my best to follow and implement all the good recommondations
+
+example recommondation:
+https://discussions.udacity.com/t/good-tips-from-my-reviewer-for-this-vehicle-detection-project/232903 
+
+
+### There are many improvement point to handle in future:
 
 * One need to keep in mind that this pipeline is far away from realtime
 * We only detect two classes car or non car. For this the linear support vector machine classifier is pretty well. But as we know SVM did not scale very well for more comllex structures of data sets. Therefore one need to look for other approches like CNN
 * So There are some false positive detections, not much but some.
 * The sliding window scaling works for this video but there are a lot things be more accurate.
 * For a better classifier one could use the GridSearchCV algorithm to get the best out of the classifier. I did try it but the computational efort was too much.
+* If it comes to performance state in real world one might to use the decision_function() of sklearn and some thresholds to reliability 
 
 * And on and on and on. One point is to make it able to calc on multi cores.
 
