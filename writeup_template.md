@@ -169,5 +169,5 @@ https://discussions.udacity.com/t/good-tips-from-my-reviewer-for-this-vehicle-de
 
 In my opinion the main part here in this project was to figure out which parameters and color spaces compute the best results. Second was to apply a meaningful multi-scale-window search. And third was to store positiv detections and threshold the heatmap.
 
-Last---> get things running is everytime 
+ 
 
