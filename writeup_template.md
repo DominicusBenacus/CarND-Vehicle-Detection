@@ -24,14 +24,14 @@
 
 ### Introduction
 
-The writeUp contains the desriction about how to find and detect vehicles and track those vehicles. So the linked .ipynb contains two pipelines. Both the vehicle fetection and the line fidning pipeline are visualized in the final submission video. 
+The writeUp contains the desriction about how to find and detect vehicles and track those vehicles. So the linked .ipynb contains two algorithms. Both the vehicle detection and the line finding algorithms are visualized in the final submission video. 
 
 * The project implementation is in the advancedLaneLinesFindingSecodLevel.ipynb
 
-* There is the Line Ficning Pipeline from cell 0-22
+* There is the Line Finding Pipeline from cell 0-22
 * The Vehicle Detection Pipeline from 23-END
 
-draw drawPolynomialsBackIntoOriginalImage() in [103] is a common fucntion of both pipelines.
+draw drawPolynomialsBackIntoOriginalImage() in [103] is a common function of both pipelines.
 ### Histogram of Oriented Gradients (HOG)
 
 #### 1. Explain how (and identify where in your code) you extracted HOG features from the training images.
@@ -69,11 +69,11 @@ This is the set I used for the submission:
 
 Why color space 'YCrCb'? Well, there were lots of discussions about color spaces in the forum. At first I compare RGB to 'YCrCb' and is was clear to me what works better. 
 
-####3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
+#### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
 Code is in cell[28]
 
-I trained a linear SVM using the default settings from the module sklearn and got pretty well results. The accuray depends a lot of how one chose the feature extraction parameters.
+I trained a linear Support Vector Machine using the default settings from the module sklearn and got pretty well results. The accuray depends a lot of how one chose the feature extraction parameters.
 
 So these are the final result:
 
@@ -93,7 +93,7 @@ I am very happy with this and the fact that training a simple linear classifier 
 
 #### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
-You find the code for the window searching algo in [88]. We know and it was also a tip of the class room not to search the entire image because the sky is not relevant in our case. So I chose to implement the window search out of the lesson and apply a multi-scale approach.
+You find the code for the window searching algo in [88]. We know and it was also a tip of the class room not to search the entire image because the sky is not relevant in our case. So I chose to implement the window search out of the lesson and apply a multi-scale algorithm approach.
 
 I set up three different scales of search windows and implement a overlapping of almost 50 percentage. The overlap means a relative overlap between one scale to the next
 
@@ -114,7 +114,7 @@ So after the first approach without multi-scale windows I did a lot of experimen
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
-Ultimately I searched on three scales as described avbove using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images created in cell[139]
+Ultimately I searched on three scales as described above using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images created in cell[139]
 
 ![image3]![image6]
 
@@ -128,7 +128,7 @@ Here's a [link to my video result](./project_submission.mp4)
 
 I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  
 
-Below two which shaws the effect of that approach very well:
+Below two images which shows the effect of that approach very well:
 
 ![image7]:
 
@@ -148,15 +148,13 @@ Here I'll talk about the approach I took, what techniques I used, what worked an
 
 Most of the code I used is out of the lessons. my approach was to get things running. But step after step. So I spend a lot of time to get a good working feature extraction and also a very well trained classifier. Therefore I also tried the GridSearchCV algo. But without success--> too much calc time without result. i will try this later again.
 
-Second big step was to adapt the find_car() function out of the lesson to be able to perform mutliscale.
+Second big step was to adapt the find_car() function out of the lesson to be able to perform mutliscale window approach.
 
-So and during the whole project I look for tips in the forum andtried my best to follow and implement all the good recommondations
+So and during the whole project I look for tips in the forum and tried my best to follow and implement all the good recommondations.
 
-example recommondation:
-https://discussions.udacity.com/t/good-tips-from-my-reviewer-for-this-vehicle-detection-project/232903 
+[Example recommondation in the forum:](https://discussions.udacity.com/t/good-tips-from-my-reviewer-for-this-vehicle-detection-project/232903 )
 
-
-### There are many improvement point to handle in future:
+### There are many improvement points to handle in future:
 
 * One need to keep in mind that this pipeline is far away from realtime
 * We only detect two classes car or non car. For this the linear support vector machine classifier is pretty well. But as we know SVM did not scale very well for more comllex structures of data sets. Therefore one need to look for other approches like CNN
